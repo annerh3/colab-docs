@@ -1,0 +1,183 @@
+@import url("https://fonts.googleapis.com/css2?family=Archivo+Black&family=Google+Sans:ital,opsz,wght@0,17..18,400..700;1,17..18,400..700&family=Outfit:wght@100..900&display=swap");
+
+:root {
+  --bg-color: #f3f3f3;
+  --bg-hover: #dbdada;
+
+  font-family: "Google Sans", sans-serif;
+  font-optical-sizing: auto;
+  font-weight: 100;
+  font-style: normal;
+  font-variation-settings: "GRAD" 0;
+}
+
+body {
+  background-color: var(--bg-color);
+  margin: 0;
+}
+
+#text-editor-container .ql-editor {
+  width: 8.5in;
+  min-height: 11in;
+  padding: 1in;
+  margin: 1rem;
+  box-shadow: 0 0 5px 0 rgba(0, 0, 0, 0.3);
+  background-color: white;
+}
+
+.ql-container.ql-snow {
+  display: flex;
+  justify-content: center;
+}
+
+.ql-toolbar.ql-snow {
+  display: flex;
+  justify-content: center;
+  position: sticky;
+  top: 48px;
+  z-index: 1;
+  background-color: var(--bg-color);
+}
+
+@page {
+  margin: 1in;
+}
+
+@media print {
+  body {
+    background-color: none;
+  }
+
+  #text-editor-container .ql-editor {
+    width: 6.5in;
+    height: 9in;
+    padding: 0;
+    margin: 0;
+    box-shadow: none;
+    align-self: flex-start;
+    background-color: none;
+  }
+
+  .ql-toolbar.ql-snow {
+    display: none;
+  }
+}
+
+h1.doc-title {
+  display: flex;
+  justify-content: center;
+
+  position: sticky;
+  top: 0; /* ← importante */
+  z-index: 2;
+
+  padding-block: 0.5rem;
+  padding-inline: 1rem;
+  margin: 0;
+
+  background-color: var(--bg-color);
+}
+
+div.home-page-container {
+  display: flex;
+  justify-content: center;
+  main {
+    /* background-color: rgb(145, 191, 215); */
+    text-align: center;
+    width: 60%;
+    height: 100dvh;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    div {
+      /* background-color: blueviolet; */
+      width: 100%;
+
+
+      /* Contenedor boton crear documento */
+      section.new-doc {
+        /* background-color: green; */
+        display: flex;
+        justify-content: center;
+
+
+        /* Boton crear documento */
+        button {
+          padding: 2rem;
+          background-color: white;
+          border-radius: 5px;
+          width: 100dvw;
+          border: none;
+          box-shadow: 0 0 5px 0 rgba(0, 0, 0, 0.1);
+        }
+
+        button:hover {
+          cursor: pointer;
+          background-color: var(--bg-hover);
+
+          svg {
+            transform: scale(110%);
+            transition: all 100ms ease-out;
+          }
+        }
+      }
+
+      section.docs-section {
+        text-align: initial;
+        /* background-color: yellow; */
+        margin-top: 2rem;
+
+        h5 {
+          padding-top: 0.5rem;
+        }
+
+        .docs {
+          gap: 1rem;
+          display: grid;
+          grid-column: 1fr;
+
+          .doc-item {
+            display: flex;
+            justify-content: flex-start;
+            align-items: center;
+            padding: 1rem;
+            background-color: white;
+            gap: 1rem;
+
+            border-radius: 5px;
+
+            border: none;
+            box-shadow: 0 0 5px 0 rgba(0, 0, 0, 0.1);
+
+            div {
+              display: grid;
+              grid-column: 1fr;
+              justify-content: start;
+
+              header {
+                white-space: nowrap;
+                overflow: hidden;
+                text-overflow: ellipsis;
+              }
+
+              footer {
+                color: gray;
+              }
+            }
+          }
+
+          .doc-item:hover {
+            cursor: pointer;
+            background-color: var(--bg-hover);
+          }
+        }
+      }
+    }
+  }
+}
+
+strong {
+  font-weight: 1000;
+}

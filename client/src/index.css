@@ -114,6 +114,13 @@ header.doc-header {
     display: flex;
     align-items: center;
     gap: 0.5rem;
+
+    /* No mostrar texto de boton en pantallas pequeñas   */
+    @media only screen and (max-width: 600px) {
+      div {
+        display: none;
+      }
+    }
   }
 
   button:hover {
@@ -276,7 +283,6 @@ div.no-data {
   color: #666;
   height: 60dvh;
 }
-
 
 /* From: https://css-loaders.com/spinner/ */
 .loader {

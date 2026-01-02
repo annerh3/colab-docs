@@ -109,11 +109,10 @@ export const Editor = () => {
   return (
     <>
       <header className="doc-header">
-        <button onClick={() => {navigate('/home')}}><MoveLeft size={15} /> Volver al inicio</button>
+        <button title="Back to home" onClick={() => {navigate('/home')}}><MoveLeft size={15} /> <div>Back to home</div></button>
         <h1 className="doc-title" title="Puede cambiar el titulo de este documento en el inicio">{docTitle}</h1>
-        <button style={{visibility: "hidden"}}><MoveLeft size={15} /> Volver a inicio</button>
+        <button style={{visibility: "hidden"}}><MoveLeft size={15} /> Back to home</button>
       </header>
-
       <main id="text-editor-container"></main>
     </>
   );

@@ -61,6 +61,13 @@ body {
   .ql-toolbar.ql-snow {
     display: none;
   }
+
+  button {
+    display: none !important;
+  }
+  h1 {
+    display: none !important;
+  }
 }
 
 header.doc-header {
@@ -106,7 +113,7 @@ header.doc-header {
 
     display: flex;
     align-items: center;
-    gap: .5rem;
+    gap: 0.5rem;
   }
 
   button:hover {
@@ -115,26 +122,25 @@ header.doc-header {
   }
 }
 
+/* Contendeor principal de HomePage */
 div.home-page-container {
   display: flex;
   justify-content: center;
+
   main {
-    /* background-color: rgb(145, 191, 215); */
     text-align: center;
-    width: 60%;
+    width: 50dvw;
     height: 100dvh;
 
     display: flex;
     align-items: center;
     justify-content: center;
 
-    div {
-      /* background-color: blueviolet; */
+    div.sections-container {
       width: 100%;
 
       /* Contenedor boton crear documento */
       section.new-doc {
-        /* background-color: green; */
         display: flex;
         justify-content: center;
 
@@ -153,27 +159,31 @@ div.home-page-container {
           background-color: var(--bg-hover);
 
           svg {
-            transform: scale(110%);
+            transform: scale(120%);
             transition: all 100ms ease-out;
           }
         }
       }
 
+      /* Contenedor seccion de documentos */
       section.docs-section {
         text-align: initial;
-        /* background-color: yellow; */
         margin-top: 2rem;
+        height: 60dvh;
 
         h5 {
           padding-top: 0.5rem;
         }
-
-        .docs {
-          gap: 1rem;
+        /* Contenedor div para lista de documentos */
+        div.docs {
           display: grid;
           grid-column: 1fr;
+          gap: 1rem;
+          max-height: 60dvh;
+          overflow-y: scroll;
 
-          .doc-item {
+          /* Un documento */
+          article.doc-item {
             display: flex;
             justify-content: flex-start;
             align-items: center;
@@ -189,6 +199,7 @@ div.home-page-container {
             cursor: pointer;
             position: relative;
 
+            /* Contenedor para titulo del documento y fecha */
             div {
               display: grid;
               grid-column: 1fr;
@@ -203,6 +214,11 @@ div.home-page-container {
 
               footer {
                 color: gray;
+                font-size: 15px;
+
+                white-space: nowrap;
+                overflow: hidden;
+                text-overflow: ellipsis;
               }
             }
 
@@ -235,16 +251,58 @@ div.home-page-container {
             }
           }
 
-          .doc-item:hover {
+          article.doc-item:hover {
             cursor: pointer;
             background-color: var(--bg-hover);
           }
         }
       }
     }
+
+    /* Breakpoints para contenedor main*/
+    @media only screen and (max-width: 600px) {
+      width: 80dvw;
+    }
+
+    @media only screen and (min-width: 600px) {
+      width: 60dvw;
+    }
   }
 }
 
-strong {
-  font-weight: 1000;
+div.no-data {
+  text-align: center;
+  padding: 2rem;
+  color: #666;
+  height: 60dvh;
+}
+
+
+/* From: https://css-loaders.com/spinner/ */
+.loader {
+  width: 50px;
+  --b: 8px;
+  aspect-ratio: 1;
+  border-radius: 50%;
+  padding: 1px;
+  background: conic-gradient(#0000 10%, #011a7d) content-box;
+  -webkit-mask: repeating-conic-gradient(
+      #0000 0deg,
+      #000 1deg 20deg,
+      #0000 21deg 36deg
+    ),
+    radial-gradient(
+      farthest-side,
+      #0000 calc(100% - var(--b) - 1px),
+      #000 calc(100% - var(--b))
+    );
+  -webkit-mask-composite: destination-in;
+  mask-composite: intersect;
+  animation: l4 1s infinite steps(10);
+}
+
+@keyframes l4 {
+  to {
+    transform: rotate(1turn);
+  }
 }

@@ -3,6 +3,13 @@ import { useNavigate } from "react-router";
 import { v4 as uuidv4 } from "uuid";
 import { useEffect, useRef, useState } from "react";
 import { io, Socket } from "socket.io-client";
+import { Loader } from "./Loader";
+import dayjs from "dayjs";
+import relativeTime from "dayjs/plugin/relativeTime";
+import "dayjs/locale/es";
+
+dayjs.extend(relativeTime);
+dayjs.locale("en");
 
 interface DocumentType {
   _id: string;
@@ -10,6 +17,8 @@ interface DocumentType {
   createdAt: string;
   updatedAt: string;
 }
+
+// dayjs.extend(relativeTime)
 
 export const HomePage = () => {
   const navigate = useNavigate();
@@ -80,33 +89,11 @@ export const HomePage = () => {
     navigate(`/documents/${docId}`);
   };
 
-  const formatDate = (dateString: string) => {
-    const date = new Date(dateString);
-    const now = new Date();
-    const diffMs = now.getTime() - date.getTime();
-    const diffMins = Math.floor(diffMs / 60000);
-    const diffHours = Math.floor(diffMs / 3600000);
-    const diffDays = Math.floor(diffMs / 86400000);
-
-    if (diffMins < 60) return `Hace ${diffMins} minutos`;
-    if (diffHours < 24) return `Hace ${diffHours} horas`;
-    if (diffDays === 1) return "Ayer";
-    if (diffDays < 7) return `Hace ${diffDays} días`;
-
-    return date.toLocaleDateString("es-ES", {
-      day: "numeric",
-      month: "short",
-      year: date.getFullYear() !== now.getFullYear() ? "numeric" : undefined,
-    });
-  };
-
   if (loading) {
     return (
       <div className="home-page-container">
         <main>
-          <div style={{ textAlign: "center", padding: "2rem" }}>
-            <p>Cargando documentos...</p>
-          </div>
+          <Loader />
         </main>
       </div>
     );
@@ -115,29 +102,28 @@ export const HomePage = () => {
   return (
     <div className="home-page-container">
       <main>
-        <div>
+        <div className="sections-container">
           {/* Titulo de pagina */}
-          <h1>Bienvenido a Docs</h1>
+          <h1>Welcome to Docs</h1>
 
           {/* Boton crear documento */}
           <section className="new-doc">
             <button onClick={handleNewDoc}>
               <FilePlus /> <br />
-              <strong>Crear documento</strong> <br />
-              <span>Empieza un nuevo documento en blanco</span>
+              <strong>Create document</strong> <br />
+              <span>Start a new blank document</span>
             </button>
           </section>
 
           {/* Lista de documentos */}
           <section className="docs-section">
-            <h5>Documentos recientes ({documents.length})</h5>
+            <h5>Recent documents ({documents.length})</h5>
 
             {documents.length === 0 ? (
-              <div
-                style={{ textAlign: "center", padding: "2rem", color: "#666" }}
-              >
-                <p>No hay documentos todavía</p>
-                <p>Crea tu primer documento para comenzar</p>
+              <div className="no-data">
+                <p>No documents yet</p>
+
+                <p>Create your first document to get started</p>
               </div>
             ) : (
               <div className="docs">
@@ -147,23 +133,24 @@ export const HomePage = () => {
                       key={doc._id}
                       className="doc-item"
                       onClick={() => handleOpenDoc(doc._id)}
+                      title="Open document"
                     >
                       <FileText />
                       <div>
                         <header>{doc.title}</header>
-                        <footer>{formatDate(doc.updatedAt)}</footer>
+                        <footer>{dayjs(doc.updatedAt).fromNow()}</footer>
                       </div>
                       <button
                         onClick={(e) => handleEditTitleDoc(doc._id, e)}
                         className="edit-btn"
-                        title="Editar titulo de documento"
+                        title="Edit document title"
                       >
                         <FilePenLine size={18} />
                       </button>
                       <button
                         onClick={(e) => handleDeleteDoc(doc._id, e)}
                         className="delete-btn"
-                        title="Eliminar documento"
+                        title="Delete document"
                       >
                         <Trash2 size={18} />
                       </button>

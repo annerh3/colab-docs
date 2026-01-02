@@ -43,7 +43,7 @@ export const Editor = () => {
       modules: { toolbar: TOOLBAR_OPTIONS },
     });
     q.disable();
-    q.setText("Cargando...");
+    q.setText("Loading...");
     quillRef.current = q;
 
     return () => {

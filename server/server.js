@@ -1,15 +1,21 @@
 import mongoose from "mongoose";
 import { Server } from "socket.io";
 import { Document } from "./Document.js";
+import 'dotenv/config';
+
+const origin = process.env.CORS;
+const dbUrl = process.env.MONGODB_URI;
+
+
 
 mongoose
-  .connect("mongodb://127.0.0.1/docs")
+  .connect(dbUrl)
   .then(() => console.log("✅ MongoDB conectado"))
   .catch((err) => console.error("❌ Error:", err));
 
 const io = new Server(3001, {
   cors: {
-    origin: "http://localhost:5173",
+    origin: origin,
     methods: ["GET", "POST"],
   },
 });
@@ -96,7 +102,7 @@ const findOrCreateDocument = async (id) => {
 
   return await Document.create({
     _id: id,
-    title: "Documento sin título",
+    title: "Untitled document",
     data: defaultValue,
     createdAt: Date.now(),
     updatedAt: Date.now(),

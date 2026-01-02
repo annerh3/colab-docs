@@ -2,7 +2,7 @@
   "name": "server",
   "type": "module",
   "scripts": {
-    "dev": "nodemon server.js"
+    "start": "nodemon server.js"
   },
   "dependencies": {
     "dotenv": "^17.2.3",

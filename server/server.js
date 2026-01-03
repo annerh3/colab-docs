@@ -1,32 +1,20 @@
 import mongoose from "mongoose";
 import { Server } from "socket.io";
 import { Document } from "./Document.js";
-import { createServer } from "http";
 import 'dotenv/config';
 
 const origin = process.env.CORS;
 const dbUrl = process.env.MONGODB_URI;
-const PORT = process.env.PORT;
+const port = process.env.PORT;
+
+
 
 mongoose
   .connect(dbUrl)
   .then(() => console.log("✅ MongoDB conectado"))
   .catch((err) => console.error("❌ Error:", err));
 
-// Crear servidor HTTP
-const httpServer = createServer((req, res) => {
-  // Ruta básica para health check
-  if (req.url === '/' || req.url === '/health') {
-    res.writeHead(200, { 'Content-Type': 'application/json' });
-    res.end(JSON.stringify({ status: 'ok', message: 'Socket.IO server running' }));
-  } else {
-    res.writeHead(404);
-    res.end();
-  }
-});
-
-// Adjuntar Socket.IO al servidor HTTP
-const io = new Server(httpServer, {
+const io = new Server(port, {
   cors: {
     origin: origin,
     methods: ["GET", "POST"],
@@ -121,8 +109,3 @@ const findOrCreateDocument = async (id) => {
     updatedAt: Date.now(),
   });
 };
-
-// Iniciar el servidor en 0.0.0.0
-httpServer.listen(PORT, '0.0.0.0', () => {
-  console.log(`Servidor Socket.IO escuchando en puerto ${PORT}`);
-});

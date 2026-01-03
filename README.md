@@ -34,10 +34,11 @@ A Google Docs-inspired collaborative text editor built with real-time synchroniz
 
 ### Home Page
 Browse and manage all your documents in one place.
+<img width="1920" height="1200" alt="Docs homepage. Displays a large button to create a new document and below it shows a list of recent documents." src="https://github.com/user-attachments/assets/30545ecb-8b0c-4a09-b435-44a806811317" />
 
 ### Editor
 Collaborative editing with real-time synchronization and rich formatting options.
-
+<img width="1920" height="1200" alt="Docs text editor. Displays text about Git Commands" src="https://github.com/user-attachments/assets/948c248e-057e-4edc-a31e-86e421783b55" />
 ## License
 
 MIT License - feel free to use this project for learning purposes.

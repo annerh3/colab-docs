@@ -1,0 +1,52 @@
+# Docs: Real-Time Collaborative Editor
+
+A Google Docs-inspired collaborative text editor built with real-time synchronization capabilities. Multiple users can edit documents simultaneously with instant updates across all connected clients.
+
+## Features
+
+- **Real-Time Collaboration**: Edit documents with others in real-time using WebSockets
+- **Rich Text Editing**: Full-featured editor powered by Quill.js
+- **Auto-Save**: Documents automatically save every 2 seconds
+- **Document Management**: Create, edit, rename, and delete documents
+- **Persistent Storage**: All documents stored in MongoDB
+- **Live Sync**: See changes from other users instantly
+
+## 🔗 Live Demo
+
+- **Live Demo**: [https://colab-docs-nu.vercel.app](https://colab-docs-nu.vercel.app)
+
+
+## Tech Stack
+
+**Frontend:**
+- React + TypeScript
+- Quill.js (Rich text editor)
+- Socket.IO Client (Real-time communication)
+- React Router (Navigation)
+- Vite (Build tool)
+
+**Backend:**
+- Node.js + Nodemon
+- Socket.IO (WebSocket server)
+- MongoDB + Mongoose (Database)
+
+##  Screenshots
+
+### Home Page
+Browse and manage all your documents in one place.
+
+### Editor
+Collaborative editing with real-time synchronization and rich formatting options.
+
+## License
+
+MIT License - feel free to use this project for learning purposes.
+
+## 👤 Author
+
+Built by Anner Henriquez as a portfolio project demonstrating real-time web technologies and full-stack development skills.
+
+
+---
+
+⭐ If you found this project interesting, please give it a star!
